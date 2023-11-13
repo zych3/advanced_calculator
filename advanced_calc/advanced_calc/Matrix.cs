@@ -103,6 +103,27 @@ public class Matrix
         return result;
     }
 
+    public static Matrix operator *(Matrix m, Matrix z)
+    {
+        if (m.MCols != z.MRows) throw new ArgumentException("error");
+        Matrix result = new Matrix(m.MRows, z.MCols);
+        
+        for (int i = 0; i < m.MRows; i++)
+        {
+            for (int j = 0; j < z.MCols; j++)
+            {
+                int sum = 0;
+                for (int k = 0; k < m.MCols; k++)
+                {
+                    sum += m.MArray[i, k] * z.MArray[k, j];
+                }
+                result.MArray[i, j] = sum;
+            }
+        }
+        
+        return result;
+    }
+
     public static bool operator ==(Matrix m, Matrix z)
     {
         if (!(m.MRows == z.MRows && m.MCols == z.MCols)) return false;

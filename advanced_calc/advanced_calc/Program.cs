@@ -13,10 +13,21 @@ static class Program
         ApplicationConfiguration.Initialize();
         Application.Run(new Form1());
 
-        ComplexNumber n = new ComplexNumber(5, 5);
-        ComplexNumber z = new ComplexNumber(5, 6);
+        Matrix m = new Matrix(3, 3);
+        Matrix z = new Matrix(3, 3);
 
-        MessageBox.Show((n == z).ToString());
+        try
+        {
+            Matrix.DebugPopulate(m, 5);
+            Matrix.DebugPopulate(z,3);
+
+            Matrix.DebugPrint(m*z);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
 
 
 
