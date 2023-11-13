@@ -1,0 +1,15 @@
+C:\Users\admin1\Documents\GitHub\codename_aries\advanced_calculator\advanced_calc\advanced_calc\bin\Debug\net7.0-windows\advanced_calc.exe
+C:\Users\admin1\Documents\GitHub\codename_aries\advanced_calculator\advanced_calc\advanced_calc\bin\Debug\net7.0-windows\advanced_calc.deps.json
+C:\Users\admin1\Documents\GitHub\codename_aries\advanced_calculator\advanced_calc\advanced_calc\bin\Debug\net7.0-windows\advanced_calc.runtimeconfig.json
+C:\Users\admin1\Documents\GitHub\codename_aries\advanced_calculator\advanced_calc\advanced_calc\bin\Debug\net7.0-windows\advanced_calc.dll
+C:\Users\admin1\Documents\GitHub\codename_aries\advanced_calculator\advanced_calc\advanced_calc\bin\Debug\net7.0-windows\advanced_calc.pdb
+C:\Users\admin1\Documents\GitHub\codename_aries\advanced_calculator\advanced_calc\advanced_calc\obj\Debug\net7.0-windows\advanced_calc.csproj.AssemblyReference.cache
+C:\Users\admin1\Documents\GitHub\codename_aries\advanced_calculator\advanced_calc\advanced_calc\obj\Debug\net7.0-windows\advanced_calc.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\admin1\Documents\GitHub\codename_aries\advanced_calculator\advanced_calc\advanced_calc\obj\Debug\net7.0-windows\advanced_calc.AssemblyInfoInputs.cache
+C:\Users\admin1\Documents\GitHub\codename_aries\advanced_calculator\advanced_calc\advanced_calc\obj\Debug\net7.0-windows\advanced_calc.AssemblyInfo.cs
+C:\Users\admin1\Documents\GitHub\codename_aries\advanced_calculator\advanced_calc\advanced_calc\obj\Debug\net7.0-windows\advanced_calc.csproj.CoreCompileInputs.cache
+C:\Users\admin1\Documents\GitHub\codename_aries\advanced_calculator\advanced_calc\advanced_calc\obj\Debug\net7.0-windows\advanced_calc.dll
+C:\Users\admin1\Documents\GitHub\codename_aries\advanced_calculator\advanced_calc\advanced_calc\obj\Debug\net7.0-windows\refint\advanced_calc.dll
+C:\Users\admin1\Documents\GitHub\codename_aries\advanced_calculator\advanced_calc\advanced_calc\obj\Debug\net7.0-windows\advanced_calc.pdb
+C:\Users\admin1\Documents\GitHub\codename_aries\advanced_calculator\advanced_calc\advanced_calc\obj\Debug\net7.0-windows\advanced_calc.genruntimeconfig.cache
+C:\Users\admin1\Documents\GitHub\codename_aries\advanced_calculator\advanced_calc\advanced_calc\obj\Debug\net7.0-windows\ref\advanced_calc.dll
