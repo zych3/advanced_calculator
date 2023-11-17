@@ -251,9 +251,9 @@ namespace WindowsFormsApp2
                     10 + dataGridViewB.Height + 10 + dataGridViewA.Height + 10 //top margin + height + bottom margin
                 );
                 
-                for(int i = 0; i < c.MRows; i++)
-                for (int j = 0; j < c.MCols; j++)
-                    dataGridViewC[i, j].Value = c.MArray[i, j];
+                for(int i = 0; i < dataGridViewC.RowCount - 1; i++)
+                for (int j = 0; j < dataGridViewC.ColumnCount; j++)
+                    dataGridViewC[j, i].Value = c.MArray[i, j];
                 
                 dataGridViewC.AllowUserToAddRows = false;
                 // Dodanie DataGridView do kontenera
@@ -423,7 +423,8 @@ namespace WindowsFormsApp2
             }
             catch (Exception exception)
             {
-                MessageBox.Show("Macierze jeszcze nie istnieją!");
+                //MessageBox.Show("Macierze jeszcze nie istnieją!");
+                throw;
             }
         }
 
