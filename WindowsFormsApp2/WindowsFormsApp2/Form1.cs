@@ -21,6 +21,7 @@ namespace WindowsFormsApp2
         private Matrix matrixC;
         private DataGridView dataGridViewA;
         private DataGridView dataGridViewB;
+        private DataGridView dataGridViewC;
 
         private ComplexNumber A;
         private ComplexNumber B;
@@ -179,7 +180,7 @@ namespace WindowsFormsApp2
                     dataGridViewA.Anchor = AnchorStyles.None;
                     dataGridViewA.Location = new System.Drawing.Point(
                         (pkDzialaniaNaMacierzach.ClientSize.Width - dataGridViewA.Size.Width) / 2,
-                        (pkDzialaniaNaMacierzach.ClientSize.Height - dataGridViewA.Size.Height) / 2
+                        10//(pkDzialaniaNaMacierzach.ClientSize.Height - dataGridViewA.Size.Height) / 2
                     );
                     dataGridViewA.AllowUserToAddRows = false;
                     // Dodanie DataGridView do kontenera
@@ -217,7 +218,7 @@ namespace WindowsFormsApp2
                 dataGridViewB.Anchor = AnchorStyles.None;
                 dataGridViewB.Location = new System.Drawing.Point(
                     (pkDzialaniaNaMacierzach.ClientSize.Width - dataGridViewB.Size.Width) / 2 ,
-                    (pkDzialaniaNaMacierzach.ClientSize.Height - dataGridViewB.Size.Height) / 2 + 150
+                    10 + dataGridViewA.Height + 10 //top margin + height + bottom margin
                 );
                 dataGridViewB.AllowUserToAddRows = false;
                 // Dodanie DataGridView do kontenera
@@ -230,6 +231,40 @@ namespace WindowsFormsApp2
             }
         }
 
+        private void createGridC(Matrix c)
+        {
+            int rowsB = c.MRows;
+            int columnsB = c.MCols;
+
+            {
+                if(dataGridViewC != null) pkDzialaniaNaMacierzach.Controls.Remove(dataGridViewC);
+                // Tworzenie nowej kontrolki DataGridView dla macierzy A
+                dataGridViewC = new DataGridView();
+
+                // Konfiguracja wymiarów DataGridView
+                dataGridViewC.Size = new System.Drawing.Size(400, 150);
+                dataGridViewC.ColumnCount = columnsB;
+                dataGridViewC.RowCount = rowsB + 1;
+
+                // Wyśrodkowanie DataGridView wewnątrz kontenera pkDzialaniaNaMacierzach
+                dataGridViewC.Anchor = AnchorStyles.None;
+                dataGridViewC.Location = new System.Drawing.Point(
+                    (pkDzialaniaNaMacierzach.ClientSize.Width - dataGridViewB.Size.Width) / 2 ,
+                    10 + dataGridViewB.Height + 10 + dataGridViewA.Height + 10 //top margin + height + bottom margin
+                );
+                
+                for(int i = 0; i < c.MRows; i++)
+                for (int j = 0; j < c.MCols; j++)
+                    dataGridViewC[i, j].Value = c.MArray[i, j];
+                
+                dataGridViewC.AllowUserToAddRows = false;
+                // Dodanie DataGridView do kontenera
+                pkDzialaniaNaMacierzach.Controls.Add(dataGridViewC);
+
+               
+                
+            } 
+        }
         private void button15_Click(object sender, EventArgs e) //reset
         {
             matrixA = null;
@@ -237,9 +272,10 @@ namespace WindowsFormsApp2
             
             pkDzialaniaNaMacierzach.Controls.Remove(dataGridViewA);
             pkDzialaniaNaMacierzach.Controls.Remove(dataGridViewB);
-
+            pkDzialaniaNaMacierzach.Controls.Remove(dataGridViewC);
             dataGridViewA = null;
             dataGridViewB = null;
+            dataGridViewC = null;
 
 
         } 
@@ -281,7 +317,7 @@ namespace WindowsFormsApp2
                     MessageBox.Show("Wprowadź poprawne liczby dla wymiarów macierzy!");
                 }
             
-                Matrix.DebugPrint(matrixA);
+                //Matrix.DebugPrint(matrixA);
             }
             catch (Exception exception)
             {
@@ -326,7 +362,7 @@ namespace WindowsFormsApp2
                     MessageBox.Show("Wprowadź poprawne liczby dla wymiarów macierzy!");
                 }
             
-                Matrix.DebugPrint(matrixB);
+               // Matrix.DebugPrint(matrixB);
             }
             catch (Exception exception)
             {
@@ -376,26 +412,58 @@ namespace WindowsFormsApp2
 
         private void button1_Click(object sender, EventArgs e) //c = a + b
         {
-            matrixC = matrixA + matrixB;
-            Matrix.DebugPrint(matrixC);
+            try
+            {
+                matrixC = matrixA + matrixB;
+                //Matrix.DebugPrint(matrixC);
+                createGridC(matrixC);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Macierze jeszcze nie istnieją!");
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            matrixC = matrixA - matrixB;
-            Matrix.DebugPrint(matrixC);
+            try
+            {
+                matrixC = matrixA - matrixB;
+                //Matrix.DebugPrint(matrixC);
+                createGridC(matrixC);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Macierze jeszcze nie istnieją!");
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            matrixC = matrixB - matrixA;
-            Matrix.DebugPrint(matrixC);
+            try
+            {
+                matrixC = matrixB - matrixA;
+                //Matrix.DebugPrint(matrixC);
+                createGridC(matrixC);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Macierze jeszcze nie istnieją!");
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            matrixC = matrixA * matrixB;
-            Matrix.DebugPrint(matrixC);
+            try
+            {
+                matrixC = matrixA * matrixB;
+               // Matrix.DebugPrint(matrixC);
+               createGridC(matrixC);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Macierze jeszcze nie istnieją!");
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -407,11 +475,20 @@ namespace WindowsFormsApp2
             catch (Exception exception)
             {
                 MessageBox.Show("matrix not created yet!!");
+                
                 //throw;
             }
-            for(int i = 0; i < dataGridViewA.ColumnCount; i++)
-            for (int j = 0; j < dataGridViewA.RowCount; j++)
-                dataGridViewA[i, j].Value = "";
+
+            try
+            {
+                for(int i = 0; i < dataGridViewA.ColumnCount; i++)
+                for (int j = 0; j < dataGridViewA.RowCount; j++)
+                    dataGridViewA[i, j].Value = "0";
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("DataGridView jeszcze nie istnieje!!");
+            }
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -423,11 +500,20 @@ namespace WindowsFormsApp2
             catch (Exception exception)
             {
                 MessageBox.Show("matrix not created yet!!");
+               
                 //throw;
             }
-            for(int i = 0; i < dataGridViewB.ColumnCount; i++)
-            for (int j = 0; j < dataGridViewB.RowCount; j++)
-                dataGridViewB[i, j].Value = "";
+
+            try
+            {
+                for(int i = 0; i < dataGridViewB.ColumnCount; i++)
+                for (int j = 0; j < dataGridViewB.RowCount; j++)
+                    dataGridViewB[i, j].Value = "0";
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("DataGridView jeszcze nie istnieje!!");
+            }
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -446,9 +532,16 @@ namespace WindowsFormsApp2
 
         private void button8_Click(object sender, EventArgs e)
         {
-            
-            MessageBox.Show((matrixA == matrixA).ToString() + "\n"
-                            + "It's redundant tho :v");
+
+            try
+            {
+                MessageBox.Show((matrixA == matrixA).ToString() + "\n"
+                                                                + "It's redundant tho :v");
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Macierz jeszcze nie istnieje!!");
+            }
         }
 
 

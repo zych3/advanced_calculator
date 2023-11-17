@@ -43,12 +43,20 @@ namespace WindowsFormsApp2
     
         public static ComplexNumber operator *(ComplexNumber n, ComplexNumber z)
         {
-            return new ComplexNumber(n.Re * z.Re, n.Im * z.Im);
+            int realPart = n.Re * z.Re - n.Im * z.Im;
+            int imaginaryPart = n.Re * z.Im + n.Im * z.Re;
+
+            return new ComplexNumber(realPart, imaginaryPart);
         }
     
-        public static ComplexNumber operator /(ComplexNumber n, ComplexNumber z)
+        public static ComplexNumber operator /(ComplexNumber a, ComplexNumber b)
         {
-            return new ComplexNumber(n.Re / z.Re, n.Im / z.Im);
+            int denominator = b.Re * b.Re + b.Im * b.Im;
+
+            int realPart = (a.Re * b.Re + a.Im * b.Im) / denominator;
+            int imaginaryPart = (a.Im * b.Re - a.Re * b.Im) / denominator;
+
+            return new ComplexNumber(realPart, imaginaryPart);
         }
 
         public static ComplexNumber operator -(ComplexNumber n)
