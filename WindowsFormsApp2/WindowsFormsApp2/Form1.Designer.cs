@@ -67,12 +67,10 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.button28 = new System.Windows.Forms.Button();
             this.button27 = new System.Windows.Forms.Button();
-            this.button26 = new System.Windows.Forms.Button();
             this.button25 = new System.Windows.Forms.Button();
             this.button24 = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
-            this.button21 = new System.Windows.Forms.Button();
             this.button19 = new System.Windows.Forms.Button();
             this.button18 = new System.Windows.Forms.Button();
             this.button20 = new System.Windows.Forms.Button();
@@ -437,12 +435,10 @@
             this.pkDzialaniaNaLiczbachZespolonych.Controls.Add(this.textBox3);
             this.pkDzialaniaNaLiczbachZespolonych.Controls.Add(this.button28);
             this.pkDzialaniaNaLiczbachZespolonych.Controls.Add(this.button27);
-            this.pkDzialaniaNaLiczbachZespolonych.Controls.Add(this.button26);
             this.pkDzialaniaNaLiczbachZespolonych.Controls.Add(this.button25);
             this.pkDzialaniaNaLiczbachZespolonych.Controls.Add(this.button24);
             this.pkDzialaniaNaLiczbachZespolonych.Controls.Add(this.button23);
             this.pkDzialaniaNaLiczbachZespolonych.Controls.Add(this.button22);
-            this.pkDzialaniaNaLiczbachZespolonych.Controls.Add(this.button21);
             this.pkDzialaniaNaLiczbachZespolonych.Controls.Add(this.button19);
             this.pkDzialaniaNaLiczbachZespolonych.Controls.Add(this.button18);
             this.pkDzialaniaNaLiczbachZespolonych.Controls.Add(this.button20);
@@ -566,25 +562,14 @@
             // button27
             // 
             this.button27.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button27.Location = new System.Drawing.Point(1204, 404);
+            this.button27.Location = new System.Drawing.Point(1039, 404);
             this.button27.Margin = new System.Windows.Forms.Padding(4);
             this.button27.Name = "button27";
-            this.button27.Size = new System.Drawing.Size(153, 63);
+            this.button27.Size = new System.Drawing.Size(318, 63);
             this.button27.TabIndex = 28;
             this.button27.Text = "Z = A.re";
             this.button27.UseVisualStyleBackColor = true;
             this.button27.Click += new System.EventHandler(this.button27_Click);
-            // 
-            // button26
-            // 
-            this.button26.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button26.Location = new System.Drawing.Point(1039, 404);
-            this.button26.Margin = new System.Windows.Forms.Padding(4);
-            this.button26.Name = "button26";
-            this.button26.Size = new System.Drawing.Size(153, 63);
-            this.button26.TabIndex = 27;
-            this.button26.Text = "re = Z";
-            this.button26.UseVisualStyleBackColor = true;
             // 
             // button25
             // 
@@ -633,17 +618,6 @@
             this.button22.Text = "Z = !A";
             this.button22.UseVisualStyleBackColor = true;
             this.button22.Click += new System.EventHandler(this.button22_Click);
-            // 
-            // button21
-            // 
-            this.button21.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button21.Location = new System.Drawing.Point(872, 470);
-            this.button21.Margin = new System.Windows.Forms.Padding(4);
-            this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(141, 63);
-            this.button21.TabIndex = 22;
-            this.button21.Text = "Z = -A";
-            this.button21.UseVisualStyleBackColor = true;
             // 
             // button19
             // 

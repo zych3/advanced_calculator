@@ -58,7 +58,7 @@ namespace WindowsFormsApp2
         private Label label4;
         private Label label3;
         private Label label2;
-        private TabPage pkDzialaniaNaLiczbachZespolonych;
+        private System.Windows.Forms.TabPage pkDzialaniaNaLiczbachZespolonych;
         private Label label7;
         private Label label8;
         private Label label9;
@@ -79,12 +79,10 @@ namespace WindowsFormsApp2
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.Button button19;
-        private Button button21;
         private System.Windows.Forms.Button button22;
         private System.Windows.Forms.Button button23;
         private System.Windows.Forms.Button button24;
         private System.Windows.Forms.Button button25;
-        private Button button26;
         private System.Windows.Forms.Button button27;
         private System.Windows.Forms.Button button28;
         private System.Windows.Forms.TextBox textBox3;
@@ -95,7 +93,7 @@ namespace WindowsFormsApp2
         private TextBox textBox8;
         private TextBox textBox9;
         private TextBox textBox10;
-        private TextBox textBox11;
+        private System.Windows.Forms.TextBox textBox11;
 
         public Form1()
         {
@@ -414,6 +412,11 @@ namespace WindowsFormsApp2
         {
             try
             {
+                if (matrixA.MRows != matrixB.MRows || matrixA.MCols != matrixB.MCols)
+                {
+                    MessageBox.Show("Niewłaściwe wymiary macierzy dla tej operacji!");
+                    return;
+                }
                 matrixC = matrixA + matrixB;
                 //Matrix.DebugPrint(matrixC);
                 createGridC(matrixC);
@@ -428,6 +431,11 @@ namespace WindowsFormsApp2
         {
             try
             {
+                if (matrixA.MRows != matrixB.MRows || matrixA.MCols != matrixB.MCols)
+                {
+                    MessageBox.Show("Niewłaściwe wymiary macierzy dla tej operacji!");
+                    return;
+                }
                 matrixC = matrixA - matrixB;
                 //Matrix.DebugPrint(matrixC);
                 createGridC(matrixC);
@@ -442,6 +450,11 @@ namespace WindowsFormsApp2
         {
             try
             {
+                if (matrixA.MRows != matrixB.MRows || matrixA.MCols != matrixB.MCols)
+                {
+                    MessageBox.Show("Niewłaściwe wymiary macierzy dla tej operacji!");
+                    return;
+                }
                 matrixC = matrixB - matrixA;
                 //Matrix.DebugPrint(matrixC);
                 createGridC(matrixC);
@@ -456,6 +469,11 @@ namespace WindowsFormsApp2
         {
             try
             {
+                if ( matrixA.MCols != matrixB.MRows)
+                {
+                    MessageBox.Show("Niewłaściwe wymiary macierzy dla tej operacji!");
+                    return;
+                }
                 matrixC = matrixA * matrixB;
                // Matrix.DebugPrint(matrixC);
                createGridC(matrixC);
