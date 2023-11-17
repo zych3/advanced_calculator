@@ -14,10 +14,10 @@ namespace WindowsFormsApp2
     {
         private bool[] pkStanAktywnosciStronZakladki =
             { true, true, true };
+        
 
-
-        private Matrix matrixA;
-        private Matrix matrixB;
+        private Matrix matrixA = null;
+        private Matrix matrixB = null;
         private Matrix matrixC;
         private DataGridView dataGridViewA;
         private DataGridView dataGridViewB;
@@ -157,8 +157,8 @@ namespace WindowsFormsApp2
 
         private void button9_Click(object sender, EventArgs e) //create DataGrid a
         {
-            pkDzialaniaNaMacierzach.Controls.Remove(dataGridViewB);
-            dataGridViewB = null;
+            /*pkDzialaniaNaMacierzach.Controls.Remove(dataGridViewB);
+            dataGridViewB = null;*/
 
             
             int rowsA, columnsA;
@@ -171,7 +171,7 @@ namespace WindowsFormsApp2
                     dataGridViewA = new DataGridView();
 
                     // Konfiguracja wymiarów DataGridView
-                    dataGridViewA.Size = new System.Drawing.Size(400, 400);
+                    dataGridViewA.Size = new System.Drawing.Size(400, 150);
                     dataGridViewA.ColumnCount = columnsA;
                     dataGridViewA.RowCount = rowsA + 1;
 
@@ -200,8 +200,8 @@ namespace WindowsFormsApp2
 
         private void button12_Click(object sender, EventArgs e) //create dataGrid b
         {
-            pkDzialaniaNaMacierzach.Controls.Remove(dataGridViewA);
-            dataGridViewA = null;
+            /*pkDzialaniaNaMacierzach.Controls.Remove(dataGridViewA);
+            dataGridViewA = null;*/
             int rowsB, columnsB;
 
             if (int.TryParse(textBox1.Text, out rowsB) && int.TryParse(textBox2.Text, out columnsB)) {
@@ -209,15 +209,15 @@ namespace WindowsFormsApp2
                 dataGridViewB = new DataGridView();
 
                 // Konfiguracja wymiarów DataGridView
-                dataGridViewB.Size = new System.Drawing.Size(400, 400);
+                dataGridViewB.Size = new System.Drawing.Size(400, 150);
                 dataGridViewB.ColumnCount = columnsB;
                 dataGridViewB.RowCount = rowsB + 1;
 
                 // Wyśrodkowanie DataGridView wewnątrz kontenera pkDzialaniaNaMacierzach
                 dataGridViewB.Anchor = AnchorStyles.None;
                 dataGridViewB.Location = new System.Drawing.Point(
-                    (pkDzialaniaNaMacierzach.ClientSize.Width - dataGridViewB.Size.Width) / 2,
-                    (pkDzialaniaNaMacierzach.ClientSize.Height - dataGridViewB.Size.Height) / 2
+                    (pkDzialaniaNaMacierzach.ClientSize.Width - dataGridViewB.Size.Width) / 2 ,
+                    (pkDzialaniaNaMacierzach.ClientSize.Height - dataGridViewB.Size.Height) / 2 + 150
                 );
                 dataGridViewB.AllowUserToAddRows = false;
                 // Dodanie DataGridView do kontenera
@@ -246,77 +246,93 @@ namespace WindowsFormsApp2
 
         private void button11_Click(object sender, EventArgs e) //create matrix a
         {
-            
-            int rowsA, columnsA;
-            if (int.TryParse(textBox1.Text, out rowsA) && int.TryParse(textBox2.Text, out columnsA))
+
+            try
             {
-                if (dataGridViewA != null && dataGridViewA.RowCount == rowsA && dataGridViewA.ColumnCount == columnsA)
+                int rowsA, columnsA;
+                if (int.TryParse(textBox1.Text, out rowsA) && int.TryParse(textBox2.Text, out columnsA))
                 {
-                    matrixA = new Matrix(rowsA, columnsA);
-
-                    // Loop through dataGridViewA to populate matrixA with its values
-                    for (int i = 0; i < rowsA; i++)
+                    if (dataGridViewA != null && dataGridViewA.RowCount == rowsA && dataGridViewA.ColumnCount == columnsA)
                     {
-                        for (int j = 0; j < columnsA; j++)
-                        {
-                            // Assuming matrixA is a two-dimensional array of type int[,]
-                            matrixA.MArray[i, j] = Convert.ToInt32(dataGridViewA[j, i].Value);
-                        }
-                    }
+                        matrixA = new Matrix(rowsA, columnsA);
 
-                    MessageBox.Show("Macierz A została wypełniona danymi z DataGridView!");
+                        // Loop through dataGridViewA to populate matrixA with its values
+                        for (int i = 0; i < rowsA; i++)
+                        {
+                            for (int j = 0; j < columnsA; j++)
+                            {
+                                // Assuming matrixA is a two-dimensional array of type int[,]
+                                matrixA.MArray[i, j] = Convert.ToInt32(dataGridViewA[j, i].Value);
+                            }
+                        }
+
+                        MessageBox.Show("Macierz A została wypełniona danymi z DataGridView!");
                     
-                    pkDzialaniaNaMacierzach.Controls.Remove(dataGridViewA);
-                    dataGridViewA = null;
+                        /*pkDzialaniaNaMacierzach.Controls.Remove(dataGridViewA);
+                    dataGridViewA = null;*/
+                    }
+                    else
+                    {
+                        MessageBox.Show("DataGridView nie zostało utworzone lub ma inne wymiary niż macierz A!");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("DataGridView nie zostało utworzone lub ma inne wymiary niż macierz A!");
+                    MessageBox.Show("Wprowadź poprawne liczby dla wymiarów macierzy!");
                 }
-            }
-            else
-            {
-                MessageBox.Show("Wprowadź poprawne liczby dla wymiarów macierzy!");
-            }
             
-            Matrix.DebugPrint(matrixA);
+                Matrix.DebugPrint(matrixA);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("error catching values");
+                //throw;
+            }
         }
 
         private void button14_Click(object sender, EventArgs e) //create matrix b
         {
-            int rowsB, columnsB;
-            if (int.TryParse(textBox1.Text, out rowsB) && int.TryParse(textBox2.Text, out columnsB))
+            try
             {
-                if (dataGridViewB != null && dataGridViewB.RowCount == rowsB && dataGridViewB.ColumnCount == columnsB)
+                int rowsB, columnsB;
+                if (int.TryParse(textBox1.Text, out rowsB) && int.TryParse(textBox2.Text, out columnsB))
                 {
-                    matrixB = new Matrix(rowsB, columnsB);
-
-                    // Loop through dataGridViewA to populate matrixA with its values
-                    for (int i = 0; i < rowsB; i++)
+                    if (dataGridViewB != null && dataGridViewB.RowCount == rowsB && dataGridViewB.ColumnCount == columnsB)
                     {
-                        for (int j = 0; j < columnsB; j++)
-                        {
-                            // Assuming matrixA is a two-dimensional array of type int[,]
-                            matrixB.MArray[i, j] = Convert.ToInt32(dataGridViewB[j, i].Value);
-                        }
-                    }
+                        matrixB = new Matrix(rowsB, columnsB);
 
-                    MessageBox.Show("Macierz B została wypełniona danymi z DataGridView!");
+                        // Loop through dataGridViewA to populate matrixA with its values
+                        for (int i = 0; i < rowsB; i++)
+                        {
+                            for (int j = 0; j < columnsB; j++)
+                            {
+                                // Assuming matrixA is a two-dimensional array of type int[,]
+                                matrixB.MArray[i, j] = Convert.ToInt32(dataGridViewB[j, i].Value);
+                            }
+                        }
+
+                        MessageBox.Show("Macierz B została wypełniona danymi z DataGridView!");
                     
-                    pkDzialaniaNaMacierzach.Controls.Remove(dataGridViewB);
-                    dataGridViewB = null;
+                        /*pkDzialaniaNaMacierzach.Controls.Remove(dataGridViewB);
+                    dataGridViewB = null;*/
+                    }
+                    else
+                    {
+                        MessageBox.Show("DataGridView nie zostało utworzone lub ma inne wymiary niż macierz B!");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("DataGridView nie zostało utworzone lub ma inne wymiary niż macierz B!");
+                    MessageBox.Show("Wprowadź poprawne liczby dla wymiarów macierzy!");
                 }
-            }
-            else
-            {
-                MessageBox.Show("Wprowadź poprawne liczby dla wymiarów macierzy!");
-            }
             
-            Matrix.DebugPrint(matrixB);
+                Matrix.DebugPrint(matrixB);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("error capturing values");
+                //throw;
+            }
         }
 
         private void button10_Click(object sender, EventArgs e) //populate dataGrid a 
@@ -384,23 +400,48 @@ namespace WindowsFormsApp2
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Matrix.Zero(matrixA);
-            
+            try
+            {
+                Matrix.Zero(matrixA);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("matrix not created yet!!");
+                //throw;
+            }
+            for(int i = 0; i < dataGridViewA.ColumnCount; i++)
+            for (int j = 0; j < dataGridViewA.RowCount; j++)
+                dataGridViewA[i, j].Value = "";
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            Matrix.Zero(matrixB);
+            try
+            {
+                Matrix.Zero(matrixB);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("matrix not created yet!!");
+                //throw;
+            }
+            for(int i = 0; i < dataGridViewB.ColumnCount; i++)
+            for (int j = 0; j < dataGridViewB.RowCount; j++)
+                dataGridViewB[i, j].Value = "";
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            if (matrixA == null || matrixB == null)
+
+            try
             {
-                MessageBox.Show("Matrix non existent");
-                return;
+                MessageBox.Show((matrixA == matrixB).ToString());
             }
-            MessageBox.Show((matrixA == matrixB).ToString());
+            catch (Exception exception)
+            {
+                MessageBox.Show("one of the matrices not created yet");
+                //throw;;
+            }
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -413,84 +454,164 @@ namespace WindowsFormsApp2
 
         private void button16_Click(object sender, EventArgs e)
         {
-            A = ComplexNumber.FromTextbox(textBox3, textBox10);
-            B = ComplexNumber.FromTextbox(textBox4, textBox9);
+            try
+            {
+                A = ComplexNumber.FromTextbox(textBox3, textBox10);
+                B = ComplexNumber.FromTextbox(textBox4, textBox9);
 
-            C = A + B;
-            MessageBox.Show(C.ToString());
+                C = A + B;
+                textBox11.Text = C.ToString();
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
         }
 
         private void button20_Click(object sender, EventArgs e)
         {
-            A = ComplexNumber.FromTextbox(textBox3, textBox10);
-            B = ComplexNumber.FromTextbox(textBox4, textBox9);
 
-            C = A - B;
-            MessageBox.Show(C.ToString());
+            try
+            {
+                A = ComplexNumber.FromTextbox(textBox3, textBox10);
+                B = ComplexNumber.FromTextbox(textBox4, textBox9);
+
+                C = A - B;
+                textBox11.Text = C.ToString();
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
+            
+
         }
 
         private void button18_Click(object sender, EventArgs e)
         {
-            A = ComplexNumber.FromTextbox(textBox3, textBox10);
-            B = ComplexNumber.FromTextbox(textBox4, textBox9);
+            try
+            {
+                A = ComplexNumber.FromTextbox(textBox3, textBox10);
+                B = ComplexNumber.FromTextbox(textBox4, textBox9);
 
-            C = A * B;
-            MessageBox.Show(C.ToString());
+                C = A * B;
+                textBox11.Text = C.ToString();
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
         }
 
         private void button19_Click(object sender, EventArgs e)
         {
-            A = ComplexNumber.FromTextbox(textBox3, textBox10);
-            B = ComplexNumber.FromTextbox(textBox4, textBox9);
+            try
+            {
+                A = ComplexNumber.FromTextbox(textBox3, textBox10);
+                B = ComplexNumber.FromTextbox(textBox4, textBox9);
 
-            C = A / B;
-            MessageBox.Show(C.ToString());
+                C = A / B;
+                textBox11.Text = (C.ToString());
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                
+            }
         }
 
         private void button17_Click(object sender, EventArgs e)
         {
-            A = ComplexNumber.FromTextbox(textBox3, textBox10);
-            B = ComplexNumber.FromTextbox(textBox4, textBox9);
-            E = ComplexNumber.FromTextbox(textBox6, textBox7);
+            try
+            {
+                A = ComplexNumber.FromTextbox(textBox3, textBox10);
+                B = ComplexNumber.FromTextbox(textBox4, textBox9);
+                E = ComplexNumber.FromTextbox(textBox6, textBox7);
 
-            F = (A + B * E) - (E * A);
-            MessageBox.Show(F.ToString());
+                F = (A + B * E) - (E * A);
+                textBox11.Text = (F.ToString());
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                
+            }
         }
 
         private void button22_Click(object sender, EventArgs e)
         {
-            A = ComplexNumber.FromTextbox(textBox3, textBox10);
+            try
+            {
+                A = ComplexNumber.FromTextbox(textBox3, textBox10);
             
-            MessageBox.Show((!A).ToString());
+                textBox11.Text = ((!A).ToString());
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                
+            }
         }
 
         private void button23_Click(object sender, EventArgs e)
         {
-            A = ComplexNumber.FromTextbox(textBox3, textBox10);
+            try
+            {
+                A = ComplexNumber.FromTextbox(textBox3, textBox10);
             
-            MessageBox.Show((-A).ToString());
+                textBox11.Text = ((-A).ToString());
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                
+            }
         }
 
 
         private void button24_Click(object sender, EventArgs e)
         {
-            A = ComplexNumber.FromTextbox(textBox3, textBox10);
-            B = ComplexNumber.FromTextbox(textBox4, textBox9);
-            MessageBox.Show((A!=B).ToString());
+            try
+            {
+                A = ComplexNumber.FromTextbox(textBox3, textBox10);
+                B = ComplexNumber.FromTextbox(textBox4, textBox9);
+                textBox11.Text =((A!=B).ToString());
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                
+            }
         }
 
         private void button25_Click(object sender, EventArgs e)
         {
-            A = ComplexNumber.FromTextbox(textBox3, textBox10);
-            B = ComplexNumber.FromTextbox(textBox4, textBox9);
-            MessageBox.Show((A==B).ToString());
+            try
+            {
+                A = ComplexNumber.FromTextbox(textBox3, textBox10);
+                B = ComplexNumber.FromTextbox(textBox4, textBox9);
+                textBox11.Text = ((A==B).ToString());
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                
+            }
         }
 
         private void button27_Click(object sender, EventArgs e)
         {
-            A = ComplexNumber.FromTextbox(textBox3, textBox10);
+            try
+            {
+                A = ComplexNumber.FromTextbox(textBox3, textBox10);
             
-            MessageBox.Show((A.Re).ToString());
+                textBox11.Text = ((A.Re).ToString());
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                
+            }
         }
 
         private void button28_Click(object sender, EventArgs e)

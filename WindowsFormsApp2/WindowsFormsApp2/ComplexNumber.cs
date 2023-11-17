@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace WindowsFormsApp2
 {
@@ -63,7 +64,8 @@ namespace WindowsFormsApp2
                 return new ComplexNumber(Re, Im);
             }
 
-            return null;
+            MessageBox.Show("najpierw wprowadź wartości debilu");
+            throw new ArgumentException("pola wartości puste zjebie");
         }
 
         public int Re { get; }

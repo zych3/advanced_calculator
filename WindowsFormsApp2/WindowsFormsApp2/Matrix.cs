@@ -31,6 +31,8 @@ namespace WindowsFormsApp2
             }
         }
 
+        
+        
         public static void DebugPrint(Matrix m)
         {
             StringBuilder sb = new StringBuilder();
