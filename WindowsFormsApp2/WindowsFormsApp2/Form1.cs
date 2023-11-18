@@ -32,10 +32,12 @@ namespace WindowsFormsApp2
         private ComplexNumber Z;
         private int int_Z;
         
+        
+        
         private TabControl pkZakladki;
-        private TabPage pkKokpit;
+        private System.Windows.Forms.TabPage pkKokpit;
         private System.Windows.Forms.Label label1;
-        private TabPage pkDzialaniaNaMacierzach;
+        private System.Windows.Forms.TabPage pkDzialaniaNaMacierzach;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button13;
@@ -51,29 +53,29 @@ namespace WindowsFormsApp2
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private Label label5;
-        private Label label6;
-        private TextBox textBox2;
-        private TextBox textBox1;
-        private Label label4;
-        private Label label3;
-        private Label label2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TabPage pkDzialaniaNaLiczbachZespolonych;
-        private Label label7;
-        private Label label8;
-        private Label label9;
-        private Label label10;
-        private Label label11;
-        private Label label12;
-        private Label label13;
-        private Label label14;
-        private Label label15;
-        private Label label16;
-        private Label label17;
-        private Label label18;
-        private Label label19;
-        private Label label20;
-        private Label label21;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Button button17;
         private System.Windows.Forms.Button button20;
@@ -87,17 +89,23 @@ namespace WindowsFormsApp2
         private System.Windows.Forms.Button button28;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
-        private TextBox textBox5;
-        private TextBox textBox6;
-        private TextBox textBox7;
-        private TextBox textBox8;
-        private TextBox textBox9;
-        private TextBox textBox10;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.TextBox textBox11;
 
         public Form1()
         {
             InitializeComponent();
+            dataGridView1.ColumnCount = 4;
+            dataGridView1.RowCount = 1;
+            dataGridView1[0, 0].Value = "liczba zespolona";
+            dataGridView1[1, 0].Value = "moduł";
+            dataGridView1[2, 0].Value = "liczba sprzężona";
+            dataGridView1[3, 0].Value = "moduł sprzężonej";
         }
 
         private void pkZakladki_Selecting(object sender, TabControlCancelEventArgs e)
@@ -733,5 +741,38 @@ namespace WindowsFormsApp2
                 if (c is TextBox) c.Text = "";
             }
         }
+
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+            int n;
+            
+            
+
+            if (int.TryParse(input_n.Text, out n))
+            {
+                dataGridView1.RowCount = 1 + n;
+                Random rand = new Random();
+                for (int i = 0; i < n; i++)
+                {
+                    
+                    var z = new ComplexNumber(
+                        rand.Next(100),
+                        rand.Next(100));
+                    dataGridView1[0, i+1].Value = z.ToString();
+                    dataGridView1[1, i+1].Value = ComplexNumber.module(z).ToString();
+                    dataGridView1[2, i+1].Value = (-z).ToString();
+                    dataGridView1[3, i+1].Value = ComplexNumber.module(-z).ToString();
+                    
+                }
+            }
+            else
+            {
+                MessageBox.Show("invalid input for N!!!");
+            }
+            
+        }
+
+        
     }
 }

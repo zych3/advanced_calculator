@@ -11,6 +11,11 @@ namespace WindowsFormsApp2
             Im = im;
         }
 
+        public static double module(ComplexNumber z)
+        {
+            return Math.Sqrt(z.Re * z.Re + z.Im * z.Im);
+        }
+
         public override string ToString()
         {
             return (Re + " + " + Im + "i");
